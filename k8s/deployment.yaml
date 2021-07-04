@@ -29,7 +29,6 @@ spec:
               value: mongopwd
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
