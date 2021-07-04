@@ -78,6 +78,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: api-conversao
-  minRepilicas: 1
+  minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60  
