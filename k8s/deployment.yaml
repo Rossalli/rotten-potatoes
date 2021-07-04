@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: movies
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: movies
@@ -27,6 +28,15 @@ spec:
               value: mongouser  
             - name: MONGODB_PASSWORD
               value: mongopwd
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 2
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 1
           livenessProbe:
             httpGet:
               path: /health
@@ -36,6 +46,13 @@ spec:
             timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 1
+          resources:
+            request:
+              cpu: "200m"
+              memory: "32Mi"
+            limits:
+              cpu: "400m"
+              memory: "64Mi"                  
 
 ---
 apiVersion: v1
@@ -49,4 +66,4 @@ spec:
     - port: 80
       targetPort: 5000
       nodePort: 30000 
-  type: LoadBalancer
+  type: LoadBalancer       
