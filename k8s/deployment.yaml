@@ -46,13 +46,13 @@ spec:
             timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 1
-          resources:
-            request:
-              cpu: "200m"
-              memory: "32Mi"
-            limits:
-              cpu: "400m"
-              memory: "64Mi"                  
+          # resources:
+          #   request:
+          #     cpu: "200m"
+          #     memory: "32Mi"
+          #   limits:
+          #     cpu: "400m"
+          #     memory: "64Mi"                  
 
 ---
 apiVersion: v1
@@ -67,3 +67,17 @@ spec:
       targetPort: 5000
       nodePort: 30000 
   type: LoadBalancer       
+
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api-conversao
+  minRepilicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 60  
