@@ -32,9 +32,9 @@ spec:
             httpGet:
               path: /ready
               port: 5000
-            initialDelaySeconds: 5
-            periodSeconds: 3
-            timeoutSeconds: 2
+            initialDelaySeconds: 3
+            periodSeconds: 2
+            timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 2
           livenessProbe:
@@ -46,13 +46,13 @@ spec:
             timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 2
-          resources:
-            requests:
-              cpu: "200m"
-              memory: "32Mi"
-            limits:
-              cpu: "400m"
-              memory: "64Mi"                  
+          #resources:
+            #requests:
+              #cpu: "200m"
+              #memory: "32Mi"
+            #limits:
+              #cpu: "400m"
+              #memory: "64Mi"                  
 
 ---
 apiVersion: v1
