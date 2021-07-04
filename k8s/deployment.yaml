@@ -46,13 +46,13 @@ spec:
             timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 1
-          # resources:
-          #   request:
-          #     cpu: "200m"
-          #     memory: "32Mi"
-          #   limits:
-          #     cpu: "400m"
-          #     memory: "64Mi"                  
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "32Mi"
+            limits:
+              cpu: "400m"
+              memory: "64Mi"                  
 
 ---
 apiVersion: v1
@@ -78,6 +78,6 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: api-conversao
-  minReplicas: 1
+  minRepilicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60  
