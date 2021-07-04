@@ -32,11 +32,11 @@ spec:
             httpGet:
               path: /ready
               port: 5000
-            initialDelaySeconds: 3
-            periodSeconds: 2
-            timeoutSeconds: 1
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            timeoutSeconds: 2
             successThreshold: 1
-            failureThreshold: 1
+            failureThreshold: 2
           livenessProbe:
             httpGet:
               path: /health
@@ -45,7 +45,7 @@ spec:
             periodSeconds: 2
             timeoutSeconds: 1
             successThreshold: 1
-            failureThreshold: 1
+            failureThreshold: 2
           resources:
             requests:
               cpu: "200m"
@@ -80,4 +80,4 @@ spec:
     name: api-conversao
   minReplicas: 1
   maxReplicas: 5
-  targetCPUUtilizationPercentage: 60  
+  targetCPUUtilizationPercentage: 60
